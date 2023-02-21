@@ -5,13 +5,13 @@ import * as Yup from "yup";
 const formSemasi = Yup.object().shape({
   title: Yup.string()
     .required("Task başlığı yazmalısınız")
-    .min(3, "Task başlığı en az 3 karakter olmalı"),
+    .min(3, "Title of task must be 3 characters"),
   description: Yup.string()
     .required("Task açıklaması yazmalısınız")
-    .min(10, "Task açıklaması en az 10 karakter olmalı"),
+    .min(10, "This section must be min 10 characters "),
   people: Yup.array()
-    .max(3, "En fazla 3 kişi seçebilirsiniz")
-    .min(1, "Lütfen en az bir kişi seçin"),
+    .max(3, "Must be select max 3 people")
+    .min(1, "Please select at least one person"),
 });
 
 const TaskForm = ({ kisiler, submitFn }) => {
@@ -72,7 +72,6 @@ const TaskForm = ({ kisiler, submitFn }) => {
     });
   }
 
-
   // diğer form alanları değiştikçe çalışan ve yeni değeri state'e ekleyen fonksiyon
   function handleOthersChange(e) {
     const { name, value } = e.target;
@@ -89,7 +88,7 @@ const TaskForm = ({ kisiler, submitFn }) => {
     submitFn({
       ...formData,
       id: nanoid(5),
-      status: "yapılacak",
+      status: "to do",
     });
     setFormData({
       title: "",
@@ -102,7 +101,7 @@ const TaskForm = ({ kisiler, submitFn }) => {
     <form className="taskForm" onSubmit={handleSubmit}>
       <div className="form-line">
         <label className="input-label" htmlFor="title">
-          Başlık
+          Title
         </label>
         <input
           className="input-text"
@@ -117,7 +116,7 @@ const TaskForm = ({ kisiler, submitFn }) => {
 
       <div className="form-line">
         <label className="input-label" htmlFor="description">
-          Açıklama
+          Description
         </label>
         <textarea
           className="input-textarea"
@@ -131,7 +130,7 @@ const TaskForm = ({ kisiler, submitFn }) => {
       </div>
 
       <div className="form-line">
-        <label className="input-label">İnsanlar</label>
+        <label className="input-label">People</label>
         <div>
           {kisiler.map((p) => (
             <label className="input-checkbox" key={p}>
@@ -155,7 +154,7 @@ const TaskForm = ({ kisiler, submitFn }) => {
           type="submit"
           disabled={buttonDisabled}
         >
-          Kaydet
+          Save
         </button>
       </div>
     </form>

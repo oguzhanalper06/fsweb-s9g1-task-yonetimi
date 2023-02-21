@@ -6,11 +6,11 @@ const PeopleForm = ({ kisiler, submitFn }) => {
 
   useEffect(() => {
     if (kisiler.includes(isim)) {
-      setError("Bu isim daha önce eklenmiş")
+      setError("Bu isim daha önce eklenmiş");
     } else {
-      setError(null)
+      setError(null);
     }
-  }, [isim, kisiler])
+  }, [isim, kisiler]);
 
   function handleIsimChange(e) {
     setIsim(e.target.value);
@@ -26,7 +26,7 @@ const PeopleForm = ({ kisiler, submitFn }) => {
     <form className="taskForm" onSubmit={handleSubmit}>
       <div className="form-line">
         <label className="input-label" htmlFor="title">
-          İsim
+          Name
         </label>
         <input
           className="input-text"
@@ -45,7 +45,7 @@ const PeopleForm = ({ kisiler, submitFn }) => {
           type="submit"
           disabled={isim.length === 0 || error}
         >
-          Ekle
+          Add
         </button>
       </div>
     </form>
